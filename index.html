@@ -15,6 +15,7 @@
     <div>
         <p>Remaining</p>
         <ul id="remainList">
+  
         </ul>
     </div>
     
@@ -36,25 +37,38 @@ if (inpValue == ''){
 }
 else{
         let addElem = document.createElement("li");
+        let addLable = document.createElement('label');
         let addElEdit = document.createElement('button');
         let addElDel = document.createElement('button');
         let addCheckBox = document.createElement('input');
 
-        addElem.innerHTML = inpValue;
+        addLable.innerHTML = inpValue;
         addElEdit.innerHTML = 'Edit';
         addElDel.innerHTML = 'Delete';
         addCheckBox.setAttribute('type',"checkbox");
+        addElDel.setAttribute('id','btnDel');
+        addElEdit.setAttribute('id','btnEdit');
+        addElem.setAttribute('id','TaskItem');
 
+       
         let addingItem = document.getElementById('remainList')
         .appendChild(addElem);
-        let addingElEdit = addingItem.appendChild(addElEdit);
-        let addingElDel = addingItem.appendChild(addElDel);
-        let addingCheckBox = addingItem.appendChild(addCheckBox);
-
+         addingItem.appendChild(addCheckBox);
+         addingItem.appendChild(addLable);
+         addingItem.appendChild(addElEdit);
+         addingItem.appendChild(addElDel);        
 
         document.getElementById('inp').value = '';
+
+
+        addElDel.addEventListener('click', () => {
+            addingItem.parentNode.removeChild(addingItem);
+    });
+
+
     }
-    }
+    };
+
     </script>
 </body>
 </html>
