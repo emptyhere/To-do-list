@@ -36,8 +36,22 @@ if (inpValue == ''){
 }
 else{
         let addElem = document.createElement("li");
+        let addElEdit = document.createElement('button');
+        let addElDel = document.createElement('button');
+        let addCheckBox = document.createElement('input');
+
         addElem.innerHTML = inpValue;
-        let addingItem = document.getElementById('remainList').appendChild(addElem);
+        addElEdit.innerHTML = 'Edit';
+        addElDel.innerHTML = 'Delete';
+        addCheckBox.setAttribute('type',"checkbox");
+
+        let addingItem = document.getElementById('remainList')
+        .appendChild(addElem);
+        let addingElEdit = addingItem.appendChild(addElEdit);
+        let addingElDel = addingItem.appendChild(addElDel);
+        let addingCheckBox = addingItem.appendChild(addCheckBox);
+
+
         document.getElementById('inp').value = '';
     }
     }
