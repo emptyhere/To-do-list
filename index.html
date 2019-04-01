@@ -1,74 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To-do-list</title>
 </head>
+
 <body>
-    
-<div>
-    <input id="inp" type="text">
-    <button id="addBtn">Add Task</button>
 
     <div>
-        <p>Remaining</p>
-        <ul id="remainList">
-  
-        </ul>
+        <input id="inp" type="text">
+        <button id="addBtn">Add Task</button>
+
+        <div>
+            <p>Remaining</p>
+            <ul id="remainList">
+
+            </ul>
+        </div>
+
+        <div>
+            <p>Done</p>
+            <ul id="doneList">
+            </ul>
+        </div>
     </div>
-    
-    <div>
-        <p>Done</p>
-        <ul>
-            <li></li>
-        </ul>
-    </div>
-</div>
 
     <script>
-   addBtn.onclick = () =>{
-        let inpValue = document.getElementById('inp').value;
-        console.log(inpValue);
+        addBtn.onclick = () => {
+            let inpValue = document.getElementById('inp').value;
+            console.log(inpValue);
 
-if (inpValue == ''){
-    alert('Enter something');
-}
-else{
-        let addElem = document.createElement("li");
-        let addLable = document.createElement('label');
-        let addElEdit = document.createElement('button');
-        let addElDel = document.createElement('button');
-        let addCheckBox = document.createElement('input');
+            if (inpValue == '') {
+                alert('Enter something');
+            } else {
+                let addElem = document.createElement("li");
+                let addLable = document.createElement('label');
+                let addElEdit = document.createElement('button');
+                let addElDel = document.createElement('button');
+                let addCheckBox = document.createElement('input');
 
-        addLable.innerHTML = inpValue;
-        addElEdit.innerHTML = 'Edit';
-        addElDel.innerHTML = 'Delete';
-        addCheckBox.setAttribute('type',"checkbox");
-        addElDel.setAttribute('id','btnDel');
-        addElEdit.setAttribute('id','btnEdit');
-        addElem.setAttribute('id','TaskItem');
-
-       
-        let addingItem = document.getElementById('remainList')
-        .appendChild(addElem);
-         addingItem.appendChild(addCheckBox);
-         addingItem.appendChild(addLable);
-         addingItem.appendChild(addElEdit);
-         addingItem.appendChild(addElDel);        
-
-        document.getElementById('inp').value = '';
+                addLable.innerHTML = inpValue;
+                addElEdit.innerHTML = 'Edit';
+                addElDel.innerHTML = 'Delete';
+                addCheckBox.setAttribute('type', "checkbox");
+                addElDel.setAttribute('id', 'btnDel');
+                addElEdit.setAttribute('id', 'btnEdit');
+                addElem.setAttribute('id', 'TaskItem');
 
 
-        addElDel.addEventListener('click', () => {
-            addingItem.parentNode.removeChild(addingItem);
-    });
+                let addingItem = document.getElementById('remainList')
+                    .appendChild(addElem);
+                addingItem.appendChild(addCheckBox);
+                addingItem.appendChild(addLable);
+                addingItem.appendChild(addElEdit);
+                addingItem.appendChild(addElDel);
+
+                document.getElementById('inp').value = '';
+
+                addElDel.addEventListener('click', () => {
+                    addingItem.parentNode.removeChild(addingItem);
+                });
 
 
-    }
-    };
+                addCheckBox.addEventListener('click', () => {
+                    doneList.appendChild(addingItem);
+                    if (addCheckBox.checked == false) {
+                        remainList.appendChild(addingItem);
+                    }
+                });
 
+
+            }
+        };
     </script>
 </body>
+
 </html>
