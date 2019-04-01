@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-do-list</title>
+</head>
+<body>
+    
+<div>
+    <input id="inp" type="text">
+    <button id="addBtn">Add Task</button>
+
+    <div>
+        <p>Remaining</p>
+        <ul id="remainList">
+        </ul>
+    </div>
+    
+    <div>
+        <p>Done</p>
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+    <script>
+   addBtn.onclick = () =>{
+        let inpValue = document.getElementById('inp').value;
+        console.log(inpValue);
+
+if (inpValue == ''){
+    alert('Enter something');
+}
+else{
+        let addElem = document.createElement("li");
+        addElem.innerHTML = inpValue;
+        let addingItem = document.getElementById('remainList').appendChild(addElem);
+        document.getElementById('inp').value = '';
+    }
+    }
+    </script>
+</body>
+</html>
