@@ -11,24 +11,33 @@
 <body>
 
     <div>
-        <input id="inp" type="text">
+        <input id="inp" type="text" placeholder='Enter something'>
         <button id="addBtn">Add Task</button>
 
         <div>
-            <p>Remaining:</p>
+            <p>Remaining: <span id='remCount'></span></p>
             <ul id="remainList">
 
             </ul>
         </div>
 
         <div>
-            <p>Done:</p>
+            <p>Done: <span id='doneCount'></span></p>
             <ul id="doneList">
             </ul>
         </div>
     </div>
 
     <script>
+        let toDoArr = {
+            remain: [
+
+            ],
+            done: [
+
+            ]
+        };
+
         addBtn.onclick = () => {
             let inpValue = document.getElementById('inp').value;
             console.log(inpValue);
@@ -50,12 +59,13 @@
                 addElDel.setAttribute('id', 'btnDel');
                 addElEdit.setAttribute('id', 'btnEdit');
                 addElem.setAttribute('id', 'TaskItem');
+                addLable.setAttribute('id', 'lableText');
+                addLable.setAttribute('data-count', 1);
 
                 addEditBox.setAttribute('type', 'text');
                 addEditBox.setAttribute('id', 'EditBox');
+                addEditBox.setAttribute('value', inpValue);
                 addEditBox.style.display = 'none';
-
-
 
                 let addingItem = document.getElementById('remainList')
                     .appendChild(addElem);
@@ -69,9 +79,20 @@
 
                 document.getElementById('inp').value = '';
 
+                toDoArr.remain.push(inpValue);
+                setInterval( () =>{
+                document.getElementById('remCount').innerHTML = 
+                toDoArr.remain.length;
+
+                document.getElementById('doneCount').innerHTML = 
+                toDoArr.done.length;
+                }, 100);
+
+
 
                 addElDel.addEventListener('click', () => {
                     addingItem.parentNode.removeChild(addingItem);
+                    toDoArr.remain.shift();
                 });
 
 
@@ -80,28 +101,31 @@
                     if (addCheckBox.checked == false) {
                         remainList.appendChild(addingItem);
                         addingItem.style.textDecoration = "none";
+
+                        toDoArr.done.shift();
+                        toDoArr.remain.push(document.getElementById('EditBox').value);
+
+
                     } else if (addCheckBox.checked == true) {
                         addingItem.style.textDecoration = "line-through";
+
+                        toDoArr.remain.shift();
+                        toDoArr.done.push(document.getElementById('EditBox').value);
+
+
+
                     }
                 });
 
                 addElEdit.addEventListener('click', () => {
                     if (addEditBox.style.display !== '') {
                         addEditBox.style.display = '';
+                        addEditBox.innerHTML = 'keku';
                     } else {
                         addLable.innerHTML = document.getElementById('EditBox').value;
                         addEditBox.style.display = 'none';
                     }
-
                 });
-
-
-
-                /*  addElEdit.addEventListener('click', () => {
-                   addLable.innerHTML = document.getElementById('EditBox').value;
-                   addEditBox.style.display = 'none';
-                     });*/
-
             }
         };
     </script>
