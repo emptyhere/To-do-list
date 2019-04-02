@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,4 +132,117 @@
     </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-do-list</title>
+</head>
+
+<body>
+
+    <div>
+        <input id="inp" type="text" placeholder='Enter something'>
+        <button id="addBtn">Add Task</button>
+
+        <div>
+            <p>Remaining:</p>
+            <ul id="remainList">
+
+            </ul>
+        </div>
+
+        <div>
+            <p>Done:</p>
+            <ul id="doneList">
+            </ul>
+        </div>
+    </div>
+
+    <script>
+       addBtn.onclick = () => {
+            let inpValue = document.getElementById('inp').value;
+            console.log(inpValue);
+
+            if (inpValue == '') {
+                alert('Enter something');
+            } else {
+                let addElem = document.createElement("li");
+                let addLable = document.createElement('label');
+                let addElEdit = document.createElement('button');
+                let addElDel = document.createElement('button');
+                let addCheckBox = document.createElement('input');
+                let addEditBox = document.createElement('input');
+
+                addLable.innerHTML = inpValue;
+                addElEdit.innerHTML = 'Edit';
+                addElDel.innerHTML = 'Delete';
+                addCheckBox.setAttribute('type', "checkbox");
+                addElDel.setAttribute('id', 'btnDel');
+                addElEdit.setAttribute('id', 'btnEdit');
+                addElem.setAttribute('id', 'TaskItem');
+                addLable.setAttribute('id','lableText');
+
+                addEditBox.setAttribute('type', 'text');
+                addEditBox.setAttribute('id', 'EditBox');
+                addEditBox.setAttribute('value', inpValue);
+                addEditBox.style.display = 'none';
+
+
+
+                let addingItem = document.getElementById('remainList')
+                    .appendChild(addElem);
+                addingItem.appendChild(addCheckBox);
+                addingItem.appendChild(addLable);
+                addingItem.appendChild(addEditBox);
+                addingItem.appendChild(addElEdit);
+                addingItem.appendChild(addElDel);
+
+
+
+                document.getElementById('inp').value = '';
+
+
+                addElDel.addEventListener('click', () => {
+                    addingItem.parentNode.removeChild(addingItem);
+                });
+
+
+                addCheckBox.addEventListener('click', () => {
+                    doneList.appendChild(addingItem);
+                    if (addCheckBox.checked == false) {
+                        remainList.appendChild(addingItem);
+                        addingItem.style.textDecoration = "none";
+                    } else if (addCheckBox.checked == true) {
+                        addingItem.style.textDecoration = "line-through";
+                    }
+                });
+
+                addElEdit.addEventListener('click', () => {
+                    if (addEditBox.style.display !== '') {
+                        addEditBox.style.display = '';
+                        addEditBox.innerHTML = 'keku';
+                    } else {
+                        addLable.innerHTML =  document.getElementById('EditBox').value;
+                        addEditBox.style.display = 'none';
+                    }
+
+                });
+
+            }
+        };
+
+
+
+     
+
+
+    </script>
+</body>
+
+>>>>>>> 994c6f13a70fa93afa9d2bcc01a84b87ae18807f
 </html>
