@@ -11,7 +11,7 @@
 <body>
 
     <div>
-        <input id="inp" type="text">
+        <input id="inp" type="text" placeholder='Enter something'>
         <button id="addBtn">Add Task</button>
 
         <div>
@@ -29,7 +29,7 @@
     </div>
 
     <script>
-        addBtn.onclick = () => {
+       addBtn.onclick = () => {
             let inpValue = document.getElementById('inp').value;
             console.log(inpValue);
 
@@ -50,9 +50,11 @@
                 addElDel.setAttribute('id', 'btnDel');
                 addElEdit.setAttribute('id', 'btnEdit');
                 addElem.setAttribute('id', 'TaskItem');
+                addLable.setAttribute('id','lableText');
 
                 addEditBox.setAttribute('type', 'text');
                 addEditBox.setAttribute('id', 'EditBox');
+                addEditBox.setAttribute('value', inpValue);
                 addEditBox.style.display = 'none';
 
 
@@ -88,22 +90,22 @@
                 addElEdit.addEventListener('click', () => {
                     if (addEditBox.style.display !== '') {
                         addEditBox.style.display = '';
+                        addEditBox.innerHTML = 'keku';
                     } else {
-                        addLable.innerHTML = document.getElementById('EditBox').value;
+                        addLable.innerHTML =  document.getElementById('EditBox').value;
                         addEditBox.style.display = 'none';
                     }
 
                 });
 
-
-
-                /*  addElEdit.addEventListener('click', () => {
-                   addLable.innerHTML = document.getElementById('EditBox').value;
-                   addEditBox.style.display = 'none';
-                     });*/
-
             }
         };
+
+
+
+     
+
+
     </script>
 </body>
 
